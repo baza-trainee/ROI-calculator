@@ -29,3 +29,12 @@ body {
   color: var(--white);
   font-family: "Roboto", sans-serif;
 }
+
+body {
+  padding: 80px 120px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
