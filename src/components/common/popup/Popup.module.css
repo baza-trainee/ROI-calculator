@@ -1,0 +1,13 @@
+.popup_wrapper {
+  position: absolute;
+  background-color: var(--white);
+  color: rgb(23, 23, 23);
+  font-size: 15px;
+  font-weight: 400;
+  min-width: 232px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 16px 24px 16px 16px;
+}

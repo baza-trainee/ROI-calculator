@@ -1,0 +1,42 @@
+.header_wrapper {
+  display: flex;
+  gap: 24px;
+
+  .logo_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    img {
+      width: 296px;
+      height: 74px;
+    }
+    a {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+  .title_wrapper {
+    position: relative;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid var(--green);
+    border-radius: 8px;
+
+    .title {
+      width: 681px;
+      font-size: 20px;
+      font-weight: 500;
+      margin-right: 34px;
+    }
+
+    .hint {
+      position: relative;
+      cursor: pointer;
+    }
+  }
+}
