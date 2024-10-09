@@ -1,0 +1,23 @@
+.item_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.title_wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.value_wrapper {
+  border: 1px solid var(--light-green);
+  border-radius: 4px;
+  padding: 4px 24px;
+  width: fit-content;
+}
