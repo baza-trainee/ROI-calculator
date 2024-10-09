@@ -14,7 +14,7 @@ interface ValuesState {
 
 export const useValues = create<ValuesState>((set) => ({
   values: {
-    specialization: "",
+    specialization: "UI/UX designer",
     salary: 0,
     educationCost: 0,
     mentorshipCost: 0,

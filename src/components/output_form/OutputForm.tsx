@@ -4,6 +4,8 @@ import styles from "./OutputForm.module.css";
 const OutputForm = () => {
   const { values } = useValues();
 
+  const today = new Date().toLocaleDateString("uk-UA");
+
   return (
     <div className={styles.output_form}>
       <div className={styles.item_wrapper}>
@@ -11,9 +13,8 @@ const OutputForm = () => {
           <img src="/icons/clipboard-Pencil_icon.svg" alt="" />
           <h3>Звіт про результат ROI:</h3>
         </div>
-        <p>Junior</p>
+        <p className={styles.qualification}>Junior</p>
       </div>
-      <div>
         <div className={styles.item_wrapper}>
           <p>Спеціалізація: </p>
           <p className={styles.value_wrapper}>{values.specialization}</p>
@@ -39,19 +40,19 @@ const OutputForm = () => {
           <p className={styles.value_wrapper}>{values.fullProductivityYears}</p>
         </div>
         <div className={styles.item_wrapper}>
-          <div className={styles.title_wrapper}>
+          <div className={styles.roi_wrapper}>
             <img src="/icons/Archery_icon.svg" alt="" />
             <p>ROI: </p>
           </div>
-          <p className={styles.title_wrapper}>Number
+          <div className={styles.roi_value}>
+            <p className={styles.title_wrapper}>Number  </p>
             <img src="/icons/Percent_icon.svg" alt="" />
-          </p>
+          </div>
         </div>
-        <div className={styles.item_wrapper}>
-          <p>Date</p>
-          <button>Оновити</button>
+        <div className={styles.date_button_wrapper}>
+          <p className={styles.value_wrapper}>{today}</p>
+          <button className={styles.button_renew}>Оновити</button>
         </div>
-      </div>
     </div>
   );
 };
