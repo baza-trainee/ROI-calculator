@@ -3,6 +3,7 @@ import { popupText } from "../../../constants";
 import Popup from "../popup/Popup";
 import HeaderIcon from "../../icons/HeaderIcon";
 import styles from "./Header.module.css";
+import InfoIcon from "../../icons/InfoIcon";
 
 const Header = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -23,11 +24,13 @@ const Header = () => {
           onMouseEnter={() => setShowPopup(true)}
           onMouseLeave={() => setShowPopup(false)}
         >
-          <img src="/icons/hint_icon.svg" alt="" />
+          <InfoIcon />
+          {/* <img src="/icons/hint_icon.svg" alt="" /> */}
           {showPopup && (
             <Popup
               text={popupText}
-              position={{ right: "0", bottom: "-232px" }}
+              // position={{ right: "0", bottom: "-232px" }}
+              position={{ right: "16px", top: "24px" }}
             />
           )}
         </div>

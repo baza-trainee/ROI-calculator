@@ -20,75 +20,51 @@ export const times = ["1 рік", "2 роки", "3 роки"];
 export interface Item {
   name: string;
   title: string;
-  icon: React.FC;
-  down: string;
-  up: string;
-  info: string;
+  icon: React.ComponentType;
   text: string;
 }
 
 export const itemSpecialization: Item = {
-  name: "specialist",
+  name: "specialization",
   title: "спеціалізація",
   icon: UserIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Оберіть спеціалізацію, для якої проводите розрахунок",
+  text: "Обрати спеціалізацію для розрахунку",
 };
 export const itemLevel: Item = {
   name: "level",
   title: "pівень кваліфікації",
   icon: SkillIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Оберіть рівень кваліфікації, для якого проводите розрахунок",
+  text: "Обрати рівень кваліфікації для розрахунку",
 };
 export const itemSalary: Item = {
   name: "salary",
   title: "місячна зарплата ($)",
   icon: SalaryIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Введіть заробітну плату за місяць, в доларах, для відповідного кандидата",
+  text: "Вказати заробітну плату за місяць (у доларах) для відповідного кандидата",
 };
 export const itemEducation: Item = {
   name: "educationCost",
   title: "вартість навчання ($)",
   icon: EducationIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Параметр “Вартість навчання” включає загальні витрати компанії на підготовку та адаптацію нового співробітника.Витрати на матеріали для навчання",
+  text: "Вказати загальну суму витрат на підготовку та адаптацію відповідного кандидата",
 };
 export const itemMentoring: Item = {
   name: "mentorshipCost",
   title: "витрати на менторство ($)",
   icon: MenthorIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
   text: "Параметр “Витрати на менторство” включає загальні витрати компанії на підготовку та адаптацію нового співробітника",
 };
 export const itemProductivity: Item = {
   name: "productivity",
   title: "початкова продуктивність (%)",
   icon: ProductivityIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Параметр “Витрати на менторство” включає загальні витрати компанії на підготовку та адаптацію нового співробітника",
+  text: "Вказати початкову продуктивність кандидата (оцінка за показниками компанії). Довідково: визначають для Junior - 50%, для Middle - 80%",
 };
 export const itemFullProductivityYears: Item = {
   name: "fullProductivityYears",
   title: "досягнення повної продуктивності",
   icon: ClockIcon,
-  down: "/icons/arrow_down.svg",
-  up: "/icons/arrow_up.svg",
-  info: "/icons/info.svg",
-  text: "Оберіть відповідний рік для розрахунку - час до досягнення повної продуктивності",
+  text: "Обрати відповідний період для досягнення повної продуктивності відповідного кандидата",
 };
 
 // const skill = "Обрати рівень кваліфікації для розрахунку."

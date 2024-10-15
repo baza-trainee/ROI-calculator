@@ -66,7 +66,6 @@
   background-color: transparent;
   border: none;
   outline: none;
-  cursor: pointer;
   padding: 0;
 }
 .infoIndicator {
@@ -86,7 +85,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   list-style: none;
-  padding: 0 0 0 40px;
+  padding: 0 0 0 36px;
 }
 /* *** TEXT */
 .inputText {
@@ -103,6 +102,7 @@
   border: 1px solid var(--light-green);
   border-radius: 4px;
   background: rgba(143, 143, 143, 0.15);
+  outline: none;
   padding: 8px 40px 8px 40px;
 }
 /* *** RADIO */
@@ -115,10 +115,10 @@
 }
 .label {
   display: grid;
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: 20px 1fr;
   grid-template-rows: 24px;
+  gap: 20px;
   align-items: center;
-  color: var(--white);
   font-family: Roboto;
   font-size: 16px;
   font-weight: 400;
@@ -128,7 +128,7 @@
 }
 .point {
   display: grid;
-  grid-template-columns: 32px;
+  grid-template-columns: 20px;
   grid-template-rows: 24px;
   padding: 0;
 }
@@ -152,10 +152,23 @@
 /* *** BUTTON */
 .wrapBtnForm {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 160px;
   grid-template-rows: auto;
+  gap: 12px;
   justify-items: end;
+  align-items: center;
   padding: 0 34px 0 0;
+}
+.wrapError {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 300px;
+  height: 44px;
+}
+.errorMessage {
+  font-size: 16px;
+  color: red;
 }
 .btnSubmit {
   display: flex;

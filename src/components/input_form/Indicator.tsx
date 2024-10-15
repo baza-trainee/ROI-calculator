@@ -1,3 +1,5 @@
+import ArrowDownIcon from "../icons/ArrowDownIcon";
+import ArrowUpIcon from "../icons/ArrowUpIcon";
 import { Item } from "./data";
 import styles from "./Input.module.css";
 
@@ -19,11 +21,7 @@ const Indicator: React.FC<IndicatorProps> = ({ item, isOpen, openField }) => {
         onClick={() => openField(item)}
         className={styles.iconIndicator}
       >
-        {isOpen ? (
-          <img src={item.up} alt="arrow up" width={20} />
-        ) : (
-          <img src={item.down} alt="arrow down" width={20} />
-        )}
+        {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </button>
     </div>
   );
