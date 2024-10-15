@@ -1,6 +1,5 @@
 import { Item } from "./data";
 import styles from "./Input.module.css";
-import React from "react";
 
 interface IndicatorProps {
   item: Item;
@@ -11,7 +10,9 @@ interface IndicatorProps {
 const Indicator: React.FC<IndicatorProps> = ({ item, isOpen, openField }) => {
   return (
     <div className={styles.indicator}>
-      <img src={item.path} alt={item.title} className={styles.imgIndicator} />
+      <div className={styles.imgIndicator}>
+        <item.icon />
+      </div>
       <p className={styles.textIndicator}>{item.title}</p>
       <button
         type="button"

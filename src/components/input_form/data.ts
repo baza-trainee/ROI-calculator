@@ -1,3 +1,11 @@
+import UserIcon from "../icons/UserIcon";
+import SkillIcon from "../icons/SkillIcon";
+import SalaryIcon from "../icons/SalaryIcon";
+import EducationIcon from "../icons/EducationIcon";
+import MenthorIcon from "../icons/MenthorIcon";
+import ProductivityIcon from "../icons/ProductivityIcon";
+import ClockIcon from "../icons/ClockIcon";
+
 export const specialties = [
   "UA/UX Designer",
   "Frontend",
@@ -12,76 +20,76 @@ export const times = ["1 рік", "2 роки", "3 роки"];
 export interface Item {
   name: string;
   title: string;
-  path: string;
+  icon: React.FC;
   down: string;
   up: string;
   info: string;
   text: string;
 }
 
-export const itemSpecialist: Item = {
-  name: 'specialist',
+export const itemSpecialization: Item = {
+  name: "specialist",
   title: "спеціалізація",
-  path: "/icons/user.svg",
+  icon: UserIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Оберіть спеціалізацію, для якої проводите розрахунок",
-}
-export const itemSkill: Item = {
-  name: "skill",
+};
+export const itemLevel: Item = {
+  name: "level",
   title: "pівень кваліфікації",
-  path: "/icons/skill.svg",
+  icon: SkillIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Оберіть рівень кваліфікації, для якого проводите розрахунок",
-}
+};
 export const itemSalary: Item = {
   name: "salary",
   title: "місячна зарплата ($)",
-  path: "/icons/salary.svg",
+  icon: SalaryIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Введіть заробітну плату за місяць, в доларах, для відповідного кандидата",
-}
+};
 export const itemEducation: Item = {
-  name: "education",
+  name: "educationCost",
   title: "вартість навчання ($)",
-  path: "/icons/education.svg",
+  icon: EducationIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Параметр “Вартість навчання” включає загальні витрати компанії на підготовку та адаптацію нового співробітника.Витрати на матеріали для навчання",
-}
+};
 export const itemMentoring: Item = {
-  name: "mentoring",
+  name: "mentorshipCost",
   title: "витрати на менторство ($)",
-  path: "/icons/mentor.svg",
+  icon: MenthorIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Параметр “Витрати на менторство” включає загальні витрати компанії на підготовку та адаптацію нового співробітника",
-}
+};
 export const itemProductivity: Item = {
   name: "productivity",
   title: "початкова продуктивність (%)",
-  path: "/icons/productiv.svg",
+  icon: ProductivityIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Параметр “Витрати на менторство” включає загальні витрати компанії на підготовку та адаптацію нового співробітника",
-}
-export const itemTime: Item = {
-  name: "time",
+};
+export const itemFullProductivityYears: Item = {
+  name: "fullProductivityYears",
   title: "досягнення повної продуктивності",
-  path: "/icons/clock.svg",
+  icon: ClockIcon,
   down: "/icons/arrow_down.svg",
   up: "/icons/arrow_up.svg",
   info: "/icons/info.svg",
   text: "Оберіть відповідний рік для розрахунку - час до досягнення повної продуктивності",
-}
+};
 
 // const skill = "Обрати рівень кваліфікації для розрахунку."
 // const specialist = "Обрати спеціалізацію для розрахунку"
