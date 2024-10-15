@@ -6,49 +6,52 @@ import {
   specialties,
   skills,
   times,
-  itemSpecialist,
-  itemSkill,
+  itemSpecialization,
+  itemLevel,
   itemSalary,
   itemEducation,
   itemMentoring,
   itemProductivity,
-  itemTime,
+  itemFullProductivityYears,
   Item,
 } from "./data";
 import Indicator from "./Indicator";
 import InfoField from "./InfoField";
 import { useState } from "react";
+import { useValues } from "../../stores/useValuesStore";
 
 export interface Values {
-  specialist: string;
-  skill: string;
+  specialization: string;
+  level: string;
   salary: number;
-  education: number;
-  mentoring: number;
+  educationCost: number;
+  mentorshipCost: number;
   productivity: number;
-  time: string;
+  fullProductivityYears: string;
 }
 
 const initialValues: Values = {
-  specialist: "",
-  skill: "",
+  specialization: "",
+  level: "",
   salary: 0,
-  education: 0,
-  mentoring: 0,
+  educationCost: 0,
+  mentorshipCost: 0,
   productivity: 0,
-  time: "",
+  fullProductivityYears: "",
 };
 
 export default function InputForm() {
+  const { setValues } = useValues();
   const [openFields, setOpenFields] = useState<{ [key: string]: boolean }>({
-    specialist: false,
-    skill: false,
+    specialization: false,
+    level: false,
     salary: false,
-    education: false,
-    mentoring: false,
+    educationCost: false,
+    mentorshipCost: false,
     productivity: false,
-    time: false,
+    fullProductivityYears: false,
   });
+
   const openField = (item: Item) => {
     setOpenFields((prev) => ({
       ...prev,
@@ -61,9 +64,8 @@ export default function InputForm() {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: Values, { setSubmitting, resetForm }) => {
+          setValues(values);
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            console.log(values);
             setSubmitting(false);
           }, 1000);
           setSubmitting(true);
@@ -75,8 +77,8 @@ export default function InputForm() {
             <div className={styles.field}>
               <div className={styles.wrapIndicator}>
                 <Indicator
-                  item={itemSpecialist}
-                  isOpen={openFields.specialist}
+                  item={itemSpecialization}
+                  isOpen={openFields.specialization}
                   openField={openField}
                 />
                 <div
@@ -89,7 +91,7 @@ export default function InputForm() {
                   >
                     {specialties.map((el, i) => (
                       <InputRadio
-                        name="specialist"
+                        name="specialization"
                         key={i}
                         type="radio"
                         value={el}
@@ -100,30 +102,30 @@ export default function InputForm() {
                   </ul>
                 </div>
               </div>
-              <InfoField item={itemSpecialist} />
+              <InfoField item={itemSpecialization} />
             </div>
             <div className={styles.field}>
               <div className={styles.wrapIndicator}>
                 <Indicator
-                  item={itemSkill}
-                  isOpen={openFields.skill}
+                  item={itemLevel}
+                  isOpen={openFields.level}
                   openField={openField}
                 />
-                <div style={{ display: openFields.skill ? "block" : "none" }}>
+                <div style={{ display: openFields.level ? "block" : "none" }}>
                   <ul
                     role="group"
                     aria-labelledby="radio-group"
                     className={styles.wrapper}
                   >
                     {skills.map((el, i) => (
-                      <InputRadio name="skill" key={i} type="radio" value={el}>
+                      <InputRadio name="level" key={i} type="radio" value={el}>
                         {el}
                       </InputRadio>
                     ))}
                   </ul>
                 </div>
               </div>
-              <InfoField item={itemSkill} />
+              <InfoField item={itemLevel} />
             </div>
 
             <div className={styles.field}>
@@ -144,13 +146,15 @@ export default function InputForm() {
               <div className={styles.wrapIndicator}>
                 <Indicator
                   item={itemEducation}
-                  isOpen={openFields.education}
+                  isOpen={openFields.educationCost}
                   openField={openField}
                 />
                 <div
-                  style={{ display: openFields.education ? "block" : "none" }}
+                  style={{
+                    display: openFields.educationCost ? "block" : "none",
+                  }}
                 >
-                  <InputText name="education" />
+                  <InputText name="educationCost" />
                 </div>
               </div>
               <InfoField item={itemEducation} />
@@ -160,13 +164,15 @@ export default function InputForm() {
               <div className={styles.wrapIndicator}>
                 <Indicator
                   item={itemMentoring}
-                  isOpen={openFields.mentoring}
+                  isOpen={openFields.mentorshipCost}
                   openField={openField}
                 />
                 <div
-                  style={{ display: openFields.mentoring ? "block" : "none" }}
+                  style={{
+                    display: openFields.mentorshipCost ? "block" : "none",
+                  }}
                 >
-                  <InputText name="mentoring" />
+                  <InputText name="mentorshipCost" />
                 </div>
               </div>
               <InfoField item={itemMentoring} />
@@ -193,25 +199,36 @@ export default function InputForm() {
             <div className={styles.field}>
               <div className={styles.wrapIndicator}>
                 <Indicator
-                  item={itemTime}
-                  isOpen={openFields.time}
+                  item={itemFullProductivityYears}
+                  isOpen={openFields.fullProductivityYears}
                   openField={openField}
                 />
-                <div style={{ display: openFields.time ? "block" : "none" }}>
+                <div
+                  style={{
+                    display: openFields.fullProductivityYears
+                      ? "block"
+                      : "none",
+                  }}
+                >
                   <ul
                     role="group"
                     aria-labelledby="radio-group"
                     className={styles.wrapper}
                   >
                     {times.map((el, i) => (
-                      <InputRadio name="time" key={i} type="radio" value={el}>
+                      <InputRadio
+                        name="fullProductivityYears"
+                        key={i}
+                        type="radio"
+                        value={el}
+                      >
                         {el}
                       </InputRadio>
                     ))}
                   </ul>
                 </div>
               </div>
-              <InfoField item={itemTime} />
+              <InfoField item={itemFullProductivityYears} />
             </div>
 
             <div className={styles.wrapBtnForm}>

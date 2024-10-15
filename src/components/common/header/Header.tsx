@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { popupText } from "../../../constants";
 import Popup from "../popup/Popup";
+import HeaderIcon from "../../icons/HeaderIcon";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -13,7 +14,7 @@ const Header = () => {
         <a href="https://baza-skill.com.ua/ua">https://baza-skill.com.ua</a>
       </div>
       <div className={styles.title_wrapper}>
-        <img src="/icons/header_icon.svg" alt="" />
+        <HeaderIcon />
         <span className={styles.title}>
           Інтерактивний калькулятор ROI для порівняння найму Junior vs Middle
         </span>
