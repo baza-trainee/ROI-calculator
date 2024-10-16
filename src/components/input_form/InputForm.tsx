@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, useFormikContext } from "formik";
 import styles from "./Input.module.css";
 import InputText from "./InputText";
 import InputRadio from "./InputRadio";
@@ -19,6 +19,29 @@ import Indicator from "./Indicator";
 import InfoField from "./InfoField";
 import { useState } from "react";
 import { useValues } from "../../stores/useValuesStore";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  specialization: Yup.string().required("Це поле є обов'язковим "),
+  level: Yup.string().required("Це поле є обов'язковим "),
+  salary: Yup.number()
+    .integer("Значення має бути цілим числом")
+    .positive("Значення має бути більше нуля")
+    .required("Це поле є обов'язковим "),
+  educationCost: Yup.number()
+    .integer("Значення має бути цілим числом")
+    .positive("Значення має бути більше нуля")
+    .required("Це поле є обов'язковим "),
+  mentorshipCost: Yup.number()
+    .integer("Значення має бути цілим числом")
+    .positive("Значення має бути більше нуля")
+    .required("Це поле є обов'язковим "),
+  productivity: Yup.number()
+    .integer("Значення має бути цілим числом")
+    .positive("Значення має бути більше нуля")
+    .required("Це поле є обов'язковим "),
+  fullProductivityYears: Yup.string().required("Це поле є обов'язковим "),
+});
 
 export interface Values {
   specialization: string;
@@ -38,6 +61,16 @@ const initialValues: Values = {
   mentorshipCost: 0,
   productivity: 0,
   fullProductivityYears: "",
+};
+
+const ErrorSummary = () => {
+  const { errors, submitCount } = useFormikContext();
+  return (
+    submitCount > 0 &&
+    Object.keys(errors).length > 0 && (
+      <div className={styles.errorMessage}>Будь ласка, заповніть усі поля.</div>
+    )
+  );
 };
 
 export default function InputForm() {
@@ -63,16 +96,14 @@ export default function InputForm() {
     <div className={styles.wrapForm}>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values: Values, { setSubmitting, resetForm }) => {
+        validationSchema={validationSchema}
+        onSubmit={(values: Values, { resetForm }) => {
           setValues(values);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 1000);
-          setSubmitting(true);
+          console.log(values);
           resetForm();
         }}
       >
-        {(props) => (
+        {({ isSubmitting }) => (
           <Form autoComplete="off" className={styles.form}>
             <div className={styles.field}>
               <div className={styles.wrapIndicator}>
@@ -82,7 +113,9 @@ export default function InputForm() {
                   openField={openField}
                 />
                 <div
-                  style={{ display: openFields.specialist ? "block" : "none" }}
+                  style={{
+                    display: openFields.specialization ? "block" : "none",
+                  }}
                 >
                   <ul
                     role="group"
@@ -232,12 +265,15 @@ export default function InputForm() {
             </div>
 
             <div className={styles.wrapBtnForm}>
+              <div className={styles.wrapError}>
+                <ErrorSummary />
+              </div>
               <button
                 type="submit"
                 className={styles.btnSubmit}
-                disabled={props.isSubmitting}
+                disabled={isSubmitting}
               >
-                {props.isSubmitting ? "Submitting..." : "Розрахувати"}
+                Розрахувати
               </button>
             </div>
           </Form>
