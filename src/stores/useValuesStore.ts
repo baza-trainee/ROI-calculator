@@ -2,28 +2,48 @@ import { create } from "zustand";
 
 interface ValuesState {
   values: {
-    specialization: string;
     level: string;
+    specialization: string;
+    softSkills: string;
     salary: number;
     educationCost: number;
-    mentorshipCost: number;
-    productivity: number;
-    fullProductivityYears: string;
   };
-  ROI: string;
+  yearSalary: (salary: number) => number;
+  total: number;
   setValues: (newValues: ValuesState["values"]) => void;
 }
-
-export const useValues = create<ValuesState>((set) => ({
+export const useJunior = create<ValuesState>((set) => ({
   values: {
-    specialization: "UI/UX designer",
-    level: "",
+    level: "Junior",
+    specialization: "не визначено",
+    softSkills: "не визначено",
     salary: 0,
     educationCost: 0,
-    mentorshipCost: 0,
-    productivity: 0,
-    fullProductivityYears: "0",
   },
-  ROI: "",
-  setValues: (newValues) => set({ values: newValues, ROI: "80" }),
+  yearSalary: (salary: number) => salary * 12,
+  total: 0,
+  setValues: (newValues) =>
+    set((state) => {
+      const yearSalary = state.yearSalary(newValues.salary);
+      const total = Number(newValues.educationCost) + Number(yearSalary);
+      return { values: newValues, total };
+    }),
+}));
+
+export const useMiddle = create<ValuesState>((set) => ({
+  values: {
+    level: "Middle",
+    specialization: "не визначено",
+    softSkills: "не визначено",
+    salary: 0,
+    educationCost: 0,
+  },
+  yearSalary: (salary: number) => salary * 12,
+  total: 0,
+  setValues: (newValues) =>
+    set((state) => {
+      const yearSalary = state.yearSalary(newValues.salary);
+      const total = Number(newValues.educationCost) + Number(yearSalary);
+      return { values: newValues, total };
+    }),
 }));

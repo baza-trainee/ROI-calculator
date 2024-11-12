@@ -2,11 +2,20 @@ import styles from "./Icon.module.css";
 
 const ArrowUpIcon = () => {
   return (
-    <svg viewBox="0 0 16 9" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="28"
+      height="24"
+      viewBox="0 0 28 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         className={styles.arrow}
-        d="M14.75 8L8 1.25L1.25 8"
+        d="M21.875 15L14 8.25L6.125 15"
         stroke="#FEFFFE"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
