@@ -5,21 +5,16 @@ import InputRadio from "./InputRadio";
 import {
   specialties,
   skills,
-  times,
+  levels,
   itemSpecialization,
   itemLevel,
   itemSalary,
   itemEducation,
-  itemMentoring,
-  itemProductivity,
-  itemFullProductivityYears,
-  Item,
+  itemSkills,
 } from "./data";
 import Indicator from "./Indicator";
-import InfoField from "./InfoField";
-import { useState } from "react";
-import { useValues } from "../../stores/useValuesStore";
 import * as Yup from "yup";
+import { useJunior, useMiddle } from "../../stores/useValuesStore";
 
 const validationSchema = Yup.object().shape({
   specialization: Yup.string().required("Це поле є обов'язковим "),
@@ -32,25 +27,15 @@ const validationSchema = Yup.object().shape({
     .integer("Значення має бути цілим числом")
     .positive("Значення має бути більше нуля")
     .required("Це поле є обов'язковим "),
-  mentorshipCost: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
-    .required("Це поле є обов'язковим "),
-  productivity: Yup.number()
-    .integer("Значення має бути цілим числом")
-    .positive("Значення має бути більше нуля")
-    .required("Це поле є обов'язковим "),
-  fullProductivityYears: Yup.string().required("Це поле є обов'язковим "),
+  softSkills: Yup.string().required("Це поле є обов'язковим "),
 });
 
 export interface Values {
-  specialization: string;
   level: string;
+  specialization: string;
+  softSkills: string;
   salary: number;
   educationCost: number;
-  mentorshipCost: number;
-  productivity: number;
-  fullProductivityYears: string;
 }
 
 const initialValues: Values = {
@@ -58,9 +43,7 @@ const initialValues: Values = {
   level: "",
   salary: 0,
   educationCost: 0,
-  mentorshipCost: 0,
-  productivity: 0,
-  fullProductivityYears: "",
+  softSkills: "",
 };
 
 const ErrorSummary = () => {
@@ -74,23 +57,8 @@ const ErrorSummary = () => {
 };
 
 export default function InputForm() {
-  const { setValues } = useValues();
-  const [openFields, setOpenFields] = useState<{ [key: string]: boolean }>({
-    specialization: false,
-    level: false,
-    salary: false,
-    educationCost: false,
-    mentorshipCost: false,
-    productivity: false,
-    fullProductivityYears: false,
-  });
-
-  const openField = (item: Item) => {
-    setOpenFields((prev) => ({
-      ...prev,
-      [item.name]: !prev[item.name],
-    }));
-  };
+  const juniorState = useJunior();
+  const middleState = useMiddle();
 
   return (
     <div className={styles.wrapForm}>
@@ -98,170 +66,73 @@ export default function InputForm() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values: Values, { resetForm }) => {
-          setValues(values);
-          console.log(values);
+          if (values.level === "Junior") {
+            juniorState.setValues(values);
+          } else {
+            middleState.setValues(values);
+          }
           resetForm();
         }}
       >
         {({ isSubmitting }) => (
           <Form autoComplete="off" className={styles.form}>
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemSpecialization}
-                  isOpen={openFields.specialization}
-                  openField={openField}
-                />
-                <div
-                  style={{
-                    display: openFields.specialization ? "block" : "none",
-                  }}
-                >
-                  <ul
-                    role="group"
-                    aria-labelledby="radio-group"
-                    className={styles.wrapper}
+            <div className={styles.wrapIndicator}>
+              <Indicator item={itemLevel} />
+              <ul
+                role="group"
+                aria-labelledby="radio-group"
+                className={styles.wrapper}
+              >
+                {levels.map((el, i) => (
+                  <InputRadio name="level" key={i} type="radio" value={el}>
+                    {el}
+                  </InputRadio>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.wrapIndicator}>
+              <Indicator item={itemSpecialization} />
+              <ul
+                role="group"
+                aria-labelledby="radio-group"
+                className={styles.wrapper}
+              >
+                {specialties.map((el, i) => (
+                  <InputRadio
+                    name="specialization"
+                    key={i}
+                    type="radio"
+                    value={el}
                   >
-                    {specialties.map((el, i) => (
-                      <InputRadio
-                        name="specialization"
-                        key={i}
-                        type="radio"
-                        value={el}
-                      >
-                        {el}
-                      </InputRadio>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <InfoField item={itemSpecialization} />
-            </div>
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemLevel}
-                  isOpen={openFields.level}
-                  openField={openField}
-                />
-                <div style={{ display: openFields.level ? "block" : "none" }}>
-                  <ul
-                    role="group"
-                    aria-labelledby="radio-group"
-                    className={styles.wrapper}
-                  >
-                    {skills.map((el, i) => (
-                      <InputRadio name="level" key={i} type="radio" value={el}>
-                        {el}
-                      </InputRadio>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <InfoField item={itemLevel} />
+                    {el}
+                  </InputRadio>
+                ))}
+              </ul>
             </div>
 
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemSalary}
-                  isOpen={openFields.salary}
-                  openField={openField}
-                />
-                <div style={{ display: openFields.salary ? "block" : "none" }}>
-                  <InputText name="salary" />
-                </div>
-              </div>
-              <InfoField item={itemSalary} />
+            <div className={styles.wrapIndicator}>
+              <Indicator item={itemSalary} />
+              <InputText name="salary" />
+            </div>
+            <div className={styles.wrapIndicator}>
+              <Indicator item={itemEducation} />
+              <InputText name="educationCost" />
             </div>
 
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemEducation}
-                  isOpen={openFields.educationCost}
-                  openField={openField}
-                />
-                <div
-                  style={{
-                    display: openFields.educationCost ? "block" : "none",
-                  }}
-                >
-                  <InputText name="educationCost" />
-                </div>
-              </div>
-              <InfoField item={itemEducation} />
-            </div>
-
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemMentoring}
-                  isOpen={openFields.mentorshipCost}
-                  openField={openField}
-                />
-                <div
-                  style={{
-                    display: openFields.mentorshipCost ? "block" : "none",
-                  }}
-                >
-                  <InputText name="mentorshipCost" />
-                </div>
-              </div>
-              <InfoField item={itemMentoring} />
-            </div>
-
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemProductivity}
-                  isOpen={openFields.productivity}
-                  openField={openField}
-                />
-                <div
-                  style={{
-                    display: openFields.productivity ? "block" : "none",
-                  }}
-                >
-                  <InputText name="productivity" />
-                </div>
-              </div>
-              <InfoField item={itemProductivity} />
-            </div>
-
-            <div className={styles.field}>
-              <div className={styles.wrapIndicator}>
-                <Indicator
-                  item={itemFullProductivityYears}
-                  isOpen={openFields.fullProductivityYears}
-                  openField={openField}
-                />
-                <div
-                  style={{
-                    display: openFields.fullProductivityYears
-                      ? "block"
-                      : "none",
-                  }}
-                >
-                  <ul
-                    role="group"
-                    aria-labelledby="radio-group"
-                    className={styles.wrapper}
-                  >
-                    {times.map((el, i) => (
-                      <InputRadio
-                        name="fullProductivityYears"
-                        key={i}
-                        type="radio"
-                        value={el}
-                      >
-                        {el}
-                      </InputRadio>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <InfoField item={itemFullProductivityYears} />
+            <div className={styles.wrapIndicator}>
+              <Indicator item={itemSkills} />
+              <ul
+                role="group"
+                aria-labelledby="radio-group"
+                className={styles.wrapper}
+              >
+                {skills.map((el, i) => (
+                  <InputRadio name="softSkills" key={i} type="radio" value={el}>
+                    {el}
+                  </InputRadio>
+                ))}
+              </ul>
             </div>
 
             <div className={styles.wrapBtnForm}>

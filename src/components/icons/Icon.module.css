@@ -1,7 +1,7 @@
 .info {
   display: flex;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   fill: var(--white);
   transition: 0.2s all linear;
   cursor: pointer;
@@ -9,22 +9,45 @@
 .info:hover,
 .info:focus {
   transition: 0.2s all linear;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   fill: var(--green);
 }
-.arrow {
+@media screen and (min-width: 768px) {
+  .info {
+    /* display: flex; */
+    width: 24px;
+    height: 24px;
+    /* fill: var(--white);
+    transition: 0.2s all linear;
+    cursor: pointer; */
+  }
+  .info:hover,
+  .info:focus {
+    /* transition: 0.2s all linear; */
+    width: 24px;
+    height: 24px;
+    /* fill: var(--green); */
+  }
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+@media screen and (min-width: 768px) {
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+/* .arrow {
   display: flex;
-  width: 24px;
-  height: 24px;
   stroke: var(--white);
   transition: 0.2s all linear;
   cursor: pointer;
-}
-.arrow:hover,
+} */
+/* .arrow:hover,
 .arrow:focus {
   transition: 0.2s all linear;
-  width: 24px;
-  height: 24px;
   stroke: var(--green);
-}
+} */

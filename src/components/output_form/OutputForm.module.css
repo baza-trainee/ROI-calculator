@@ -1,50 +1,103 @@
 .output_form {
+  display: grid;
+  grid-template-columns: minmax(296px, 430px);
+  grid-template-rows: auto;
   border: 1px solid var(--light-green);
   border-radius: 4px;
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  padding: 16px 4px;
+  gap: 16px;
 }
-
+@media screen and (min-width: 768px) {
+  .output_form {
+    grid-template-columns: 430px;
+    gap: 24px;
+    padding: 32px 24px;
+  }
+}
 .qualification {
   border-radius: 4px;
-  padding: 4px 24px;
+  padding: 4px 16px;
   background-color: var(--light-green);
   color: var(--bg-color);
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.01em;
 }
-
+@media screen and (min-width: 768px) {
+  .qualification {
+    font-size: 18px;
+  }
+}
 .item_wrapper {
   display: flex;
-  gap: 25px;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   h3 {
     text-decoration: underline;
   }
 }
-
+@media screen and (min-width: 768px) {
+  .item_wrapper {
+    gap: 24px;
+    font-size: 16px;
+  }
+}
 .title_wrapper {
   display: flex;
   gap: 16px;
   align-items: center;
 }
-
 .value_wrapper {
+  display: flex;
   border: 1px solid var(--light-green);
   border-radius: 4px;
-  padding: 4px 24px;
+  padding: 4px 12px;
   width: fit-content;
   white-space: nowrap;
 }
-
+.total_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media screen and (min-width: 768px) {
+  .total_wrapper {
+    gap: 24px;
+  }
+}
+.roi_wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .roi_wrapper {
+    gap: 16px;
+  }
+}
+.roi_title {
+  background: linear-gradient(135deg, var(--light-green) 0%, var(--yellow) 99%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .roi_title {
+    font-size: 16px;
+  }
+}
 .roi_value {
   display: flex;
   gap: 7px;
@@ -68,45 +121,16 @@
       hue-rotate(0deg) brightness(0%) contrast(100%);
   }
 }
-
-.roi_wrapper {
+.date_wrapper {
   display: flex;
-  gap: 16px;
   align-items: center;
-  justify-content: center;
-  p {
-    background: linear-gradient(
-      135deg,
-      var(--light-green) 0%,
-      var(--yellow) 99%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 1.5;
-  }
-}
-
-.button_renew {
-  border: 2px solid var(--yellow);
-  background-color: transparent;
-  border-radius: 4px;
-  padding: 8px 24px;
-  color: var(--yellow);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-}
-
-.date_button_wrapper {
-  display: flex;
-  gap: 25px;
-  align-items: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
+}
+@media screen and (min-width: 768px) {
+  .date_wrapper {
+    font-size: 16px;
+  }
 }

@@ -2,8 +2,6 @@ import UserIcon from "../icons/UserIcon";
 import SkillIcon from "../icons/SkillIcon";
 import SalaryIcon from "../icons/SalaryIcon";
 import EducationIcon from "../icons/EducationIcon";
-import MenthorIcon from "../icons/MenthorIcon";
-import ProductivityIcon from "../icons/ProductivityIcon";
 import ClockIcon from "../icons/ClockIcon";
 
 export const specialties = [
@@ -14,8 +12,8 @@ export const specialties = [
   "Fullstack",
   "Project Manager",
 ];
-export const skills = ["Junior", "Middle"];
-export const times = ["1 рік", "2 роки", "3 роки"];
+export const levels = ["Junior", "Middle"];
+export const skills = ["низький", "середній", "високий"];
 
 export interface Item {
   name: string;
@@ -44,27 +42,15 @@ export const itemSalary: Item = {
 };
 export const itemEducation: Item = {
   name: "educationCost",
-  title: "вартість навчання ($)",
+  title: "вартість адаптації ($)",
   icon: EducationIcon,
   text: "Вказати загальну суму витрат на підготовку та адаптацію відповідного кандидата",
 };
-export const itemMentoring: Item = {
-  name: "mentorshipCost",
-  title: "витрати на менторство ($)",
-  icon: MenthorIcon,
-  text: "Параметр “Витрати на менторство” включає загальні витрати компанії на підготовку та адаптацію нового співробітника",
-};
-export const itemProductivity: Item = {
-  name: "productivity",
-  title: "початкова продуктивність (%)",
-  icon: ProductivityIcon,
-  text: "Вказати початкову продуктивність кандидата (оцінка за показниками компанії). Довідково: визначають для Junior - 50%, для Middle - 80%",
-};
-export const itemFullProductivityYears: Item = {
-  name: "fullProductivityYears",
-  title: "досягнення повної продуктивності",
+export const itemSkills: Item = {
+  name: "softSkills",
+  title: "оцінка hard skills",
   icon: ClockIcon,
-  text: "Обрати відповідний період для досягнення повної продуктивності відповідного кандидата",
+  text: "Обрати рівень Hard Skills відповідного кандидата (оцінка за показниками прийнятими у компанії)",
 };
 
 // const skill = "Обрати рівень кваліфікації для розрахунку."
